@@ -8,16 +8,16 @@
 #include <functional>
 #include <set>
 using namespace std;
-string unify(list<string> &t1, list<string> &t2) //вычисление общего частного случая
+string unify(list<string> &t1, list<string> &t2) //РјР± РІ Р±СѓРґСѓС‰РµРј Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ
 {
 	string result;
 	if (t1.size()==1 && t2.size() == 1)
 	{
 		if (t1.front() == t2.front()) return"#";
 		else
-		{//все переменные начинаются с большой буквы, константы с маленькой
-			if (isupper((t1.front())[0])) return(t1.front() + "#"+t2.front()); //если t1 переменная
-			if (isupper((t2.front())[0])) return(t2.front() + "#" + t1.front()); //если t2 переменная
+		{//РІСЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ РЅР°С‡РёРЅР°СЋС‚СЃСЏ СЃ Р±РѕР»СЊС€РѕР№ Р±СѓРєРІС‹, РєРѕРЅСЃС‚Р°РЅС‚С‹ СЃ РјР°Р»РµРЅСЊРєРѕР№
+			if (isupper((t1.front())[0])) return(t1.front() + "#"+t2.front()); //РµСЃР»Рё t1 РїРµСЂРµРјРµРЅРЅР°СЏ
+			if (isupper((t2.front())[0])) return(t2.front() + "#" + t1.front()); //РµСЃР»Рё t2 РїРµСЂРµРјРµРЅРЅР°СЏ
 			else return("fail");
 		}
 	}
@@ -31,7 +31,7 @@ string unify(list<string> &t1, list<string> &t2) //вычисление общего частного сл
 	result = result+ " " + z1;
 	z2 = unify(t1, t2);
 	if (z2 == "fail") return"fail";
-	return result + " " +z2;//в итоге строка из требуемых подстановок
+	return result + " " +z2;//РІ РёС‚РѕРіРµ СЃС‚СЂРѕРєР° РёР· С‚СЂРµР±СѓРµРјС‹С… РїРѕРґСЃС‚Р°РЅРѕРІРѕРє, С…РѕС‚СЏ РЅРµ РѕС‡РµРЅСЊ СѓРґРѕР±РЅРѕ
 }
 ifstream *fin;
 int yyparse(void);
@@ -97,7 +97,7 @@ void printNormalTree(int offset = 0)
 }
 PropTree* check_left(PropTree* r, bool not, string pred_symb)
 {
-  if (not) //проверяем, что это искомый предикатный символ с отрицанием
+  if (not) //РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЌС‚Рѕ РёСЃРєРѕРјС‹Р№ РїСЂРµРґРёРєР°С‚РЅС‹Р№ СЃРёРјРІРѕР» СЃ РѕС‚СЂРёС†Р°РЅРёРµРј
   {
 	  if (r != nullptr && r->left != nullptr && r->left->left!= nullptr && (r->left)->operation == OP_NOT && ((r->left)->left)->pred == pred_symb)
 	  {
@@ -127,7 +127,6 @@ PropTree* check_right(PropTree* r, bool not, string pred_symb)
 {
 	if (r!=nullptr && r->operation != OP_NOT && r->operation != OP_ATOM)
 	{
-		//cout << " ooooo  " << r->left->operation << endl;
 		if (r->left!=nullptr && check_left(r->left, not, pred_symb) != nullptr)
 		{
 			return check_left(r->left, not, pred_symb);
@@ -137,7 +136,7 @@ PropTree* check_right(PropTree* r, bool not, string pred_symb)
 			return check_right(r->right, not, pred_symb);
 		}
 	}
-	if (not) //проверяем, что это искомый предикатный символ с отрицанием
+	if (not) //РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЌС‚Рѕ РёСЃРєРѕРјС‹Р№ РїСЂРµРґРёРєР°С‚РЅС‹Р№ СЃРёРјРІРѕР» СЃ РѕС‚СЂРёС†Р°РЅРёРµРј
 	{
 		if (r!=nullptr && r->right!=nullptr && (r->right)->operation == OP_NOT && ((r->right)->left)->pred == pred_symb)
 		{
@@ -175,7 +174,7 @@ PropTree* Find(bool not, string pred_symb)
 		++it;
 		PropTree* r;
 		r = *it;
-		//N==0 означает, что до этого не было отрицания, not = false означает, что ищем формулу без отрицания
+		//not == false РѕР·РЅР°С‡Р°РµС‚, С‡С‚Рѕ РёС‰РµРј С„РѕСЂРјСѓР»Сѓ Р±РµР· РѕС‚СЂРёС†Р°РЅРёСЏ
 		k = 1;
 		for (j = V.begin(); j != V.end(); j++)
 		{

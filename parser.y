@@ -1,8 +1,8 @@
 %defines 
-/*Объявления*/
+/*ГЋГЎГєГїГўГ«ГҐГ­ГЁГї*/
 
 %{
-/*Объявления C++*/
+/*ГЋГЎГєГїГўГ«ГҐГ­ГЁГї C++*/
   //#define YYSTYPE string
   //#pragma warning (disable: 4996)
  
@@ -80,10 +80,10 @@ enum OPERATION_TYPE {
 %token<constsymbol> constant /*agatha, butler, charles*/
 %token<var> variable /*X1,X2,...  Y1,Y2,...*/ 
 
-/*начало синтаксического дерева*/
+/*Г­Г Г·Г Г«Г® Г±ГЁГ­ГІГ ГЄГ±ГЁГ·ГҐГ±ГЄГ®ГЈГ® Г¤ГҐГ°ГҐГўГ */
 %start program
 
-/*Далее следуют правила грамматики и действия*/
+/*Г„Г Г«ГҐГҐ Г±Г«ГҐГ¤ГіГѕГІ ГЇГ°Г ГўГЁГ«Г  ГЈГ°Г Г¬Г¬Г ГІГЁГЄГЁ ГЁ Г¤ГҐГ©Г±ГІГўГЁГї*/
 %%
 program: expression { $$ = new list<PropTree*>(1, $1); ResultTree=$$;}
 /* program: expression { $$->push_back($1);} */
@@ -115,7 +115,7 @@ arguments: constant {$$ = new list<string*>(1,$1);}
 	 ;
 %%
 
-/*Дополнительный код на C*/
+/*Г„Г®ГЇГ®Г«Г­ГЁГІГҐГ«ГјГ­Г»Г© ГЄГ®Г¤ Г­Г  C*/
 void yyerror(char const* msg)
 {
    std::cout<<"Syntax Error: " << msg <<std::endl;
@@ -142,7 +142,7 @@ int yylex(void)
 	    char c = *tok;
 		tok ++;
 		  //cout << str << "________"<< c << endl;
-		  if (c=='|') f--;
+		  if (c=='|') f--;//РµСЃР»Рё СЃ Р°СЂРіСѓРјРµРЅС‚Р°РјРё, С‚Рѕ СЌС‚Сѓ СЃС‚СЂРѕС‡РєСѓ СѓР±СЂР°С‚СЊ
 		  //cout<<f<<endl;
 	   if (c=='.')
 		{
@@ -155,7 +155,7 @@ int yylex(void)
 	    char c = str2[tok+strlen(tok)-str];
 		tok += strlen(tok)+1;
 		//cout << c << " " << *tok << endl;
-		if (c=='|' || c==')') f--;
+		if (c=='|' || c==')') f--; //РµСЃР»Рё СЃ Р°СЂРіСѓРјРµРЅС‚Р°РјРё, С‚Рѕ СЌС‚Сѓ СЃС‚СЂРѕС‡РєСѓ СѓР±СЂР°С‚СЊ
 		return c;
 	  }
 	  tok = strtok_s (NULL," (),&|~<=>.",&pch);

@@ -1,0 +1,12 @@
+cnf(c1,axiom,wind_in_gusts|~fire_is_lit|door_is_open|~i_feel_rheumatic).
+cnf(c2,axiom,~wind_in_east|sunshine).
+cnf(c3,axiom,~fire_smokes).
+cnf(c4,axiom,foggy|~sunshine).
+cnf(c5,axiom,~sunshine).
+cnf(c6,axiom,~cold|fire_is_lit).
+cnf(c7,axiom,~wind_in_gusts|fire_smokes).
+cnf(c8,axiom,~door_is_open).
+cnf(c9,axiom,~sunshine|cold|window_is_shut).
+cnf(c10,axiom,~foggy|i_feel_rheumatic).
+cnf(c11,axiom,wind_in_east).
+cnf(prove_window_is_shut,negated_conjecture,~window_is_shut).

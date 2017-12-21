@@ -1,0 +1,3 @@
+cnf(dated_on_blue_paper,axiom,~dated|on_blue_paper).
+cnf(dated_if_on_one_sheet,axiom,~on_one_sheet|dated).
+cnf(filed_if_on_blue_paper,axiom,~on_blue_paper|filed).
